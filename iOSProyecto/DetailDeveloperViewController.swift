@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DetailDeveloperViewController.swift
 //  iOSProyecto
 //
 //  Created by mobdev on 04-01-23.
@@ -7,13 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class DetailDeveloperViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .gray
     }
-
-
 }
-
