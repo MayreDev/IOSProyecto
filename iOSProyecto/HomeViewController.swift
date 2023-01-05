@@ -10,20 +10,22 @@ import UIKit
 struct DevelopersModel {
     let image: String
     let name: String
+    let lenguage: String
 }
 
 let listDevelopers = [
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras"),
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras"),
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras"),
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras"),
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras"),
-
+DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+]
+let listandroid = [
+    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
 ]
 
+let setupTable = [listDevelopers, listandroid]
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    
     
     private let developerTableView: UITableView = {
         let tableView = UITableView()
@@ -35,7 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         developerTableView.backgroundColor = .white
         developerTableView.dataSource = self
         developerTableView.delegate = self
-        developerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        developerTableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
         view.addSubview(developerTableView)
         
         NSLayoutConstraint.activate([
@@ -45,26 +47,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             developerTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        setupTable.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        listDevelopers.count
+        setupTable[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        let model = listDevelopers[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        let model = setupTable[indexPath.section][indexPath.row]
         
-        var setupList = UIListContentConfiguration.cell()
-        setupList.text = model.name
-        setupList.image =  UIImage(systemName: model.image)
-        cell.contentConfiguration = setupList
-
+        cell.configure(model: model)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Programadores iOS"
+        }
+        else {
+            return "Programadores Frontend"
+        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("la celda \(indexPath.row) fue seleccionada")
         let viewController = DetailDeveloperViewController()
-        
+        viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
+        //navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -16,6 +16,7 @@
 		22AC80C32966240E009160A3 /* iOSProyectoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80C22966240E009160A3 /* iOSProyectoUITestsLaunchTests.swift */; };
 		22AC80D02966265E009160A3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80CF2966265E009160A3 /* HomeViewController.swift */; };
 		22AC80D229664DF2009160A3 /* DetailDeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80D129664DF2009160A3 /* DetailDeveloperViewController.swift */; };
+		22AC80D429665679009160A3 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80D329665679009160A3 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		22AC80C22966240E009160A3 /* iOSProyectoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSProyectoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		22AC80CF2966265E009160A3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22AC80D129664DF2009160A3 /* DetailDeveloperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDeveloperViewController.swift; sourceTree = "<group>"; };
+		22AC80D329665679009160A3 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				22AC80A12966240C009160A3 /* SceneDelegate.swift */,
 				22AC80A32966240C009160A3 /* LoginViewController.swift */,
 				22AC80CF2966265E009160A3 /* HomeViewController.swift */,
+				22AC80D329665679009160A3 /* CustomCell.swift */,
 				22AC80D129664DF2009160A3 /* DetailDeveloperViewController.swift */,
 				22AC80A82966240E009160A3 /* Assets.xcassets */,
 				22AC80AD2966240E009160A3 /* Info.plist */,
@@ -260,6 +263,7 @@
 				22AC80A02966240C009160A3 /* AppDelegate.swift in Sources */,
 				22AC80A22966240C009160A3 /* SceneDelegate.swift in Sources */,
 				22AC80D229664DF2009160A3 /* DetailDeveloperViewController.swift in Sources */,
+				22AC80D429665679009160A3 /* CustomCell.swift in Sources */,
 				22AC80D02966265E009160A3 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
