@@ -14,26 +14,33 @@ struct DevelopersModel {
 }
 
 let listDevelopers = [
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
-DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+    DevelopersModel(image: "person.crop.circle.fill", name: "Nicolas Azocar", lenguage: "iOS"),
 ]
+
 let listandroid = [
-    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
-    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
-    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+    DevelopersModel(image: "person.crop.circle.fill", name: "Maria Perez", lenguage: "Android"),
+    DevelopersModel(image: "person.crop.circle.fill", name: "Jose Martinez", lenguage: "Android"),
 ]
 
-let setupTable = [listDevelopers, listandroid]
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+let developerList = [listDevelopers, listandroid]
 
-    
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+        
     private let developerTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Equipo Acelerador 3ra Generación"
+
+      
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         developerTableView.backgroundColor = .white
         developerTableView.dataSource = self
         developerTableView.delegate = self
@@ -47,19 +54,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             developerTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        setupTable.count
+        developerList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        setupTable[section].count
+        developerList[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        let model = setupTable[indexPath.section][indexPath.row]
+        let developer = developerList[indexPath.section][indexPath.row]
         
-        cell.configure(model: model)
+        cell.configure(model: developer)
         return cell
     }
     
@@ -71,11 +79,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return "Programadores Frontend"
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("la celda \(indexPath.row) fue seleccionada")
         let viewController = DetailDeveloperViewController()
         viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true)
-        //navigationController?.pushViewController(viewController, animated: true)
+        let developer = developerList[indexPath.section][indexPath.row]
+        viewController.developerDetail = developer
+        navigationController?.pushViewController(viewController, animated: true)
     }
+
 }

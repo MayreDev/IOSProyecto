@@ -11,7 +11,6 @@ import UIKit
 
 class CustomCell: UITableViewCell {
     
-    
     private let imagePerson: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -61,10 +60,8 @@ class CustomCell: UITableViewCell {
     }
     
     func configure(model: DevelopersModel){
-        
         imagePerson.image = UIImage(systemName: model.image)
         namelabel.text = model.name
         lenguageProgramerlabel.text = model.lenguage
-        
     }
 }

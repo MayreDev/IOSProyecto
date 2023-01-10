@@ -8,6 +8,14 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+   private var presenter: LoginPresenterProtocol?
+    convenience init(presenter: LoginPresenterProtocol) {
+        self.init()
+        self.presenter = presenter
+        presenter.attach(view: self)
+    }
+    
     let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -20,14 +28,6 @@ class LoginViewController: UIViewController {
         return image
     }()
     
-    let emailLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Correo"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
-        label.textAlignment = .left
-      return label
-    }()
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = 10
@@ -36,14 +36,7 @@ class LoginViewController: UIViewController {
         textField.backgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
         return textField
     }()
-    let passwordlLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Contraseña"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
-        label.textAlignment = .left
-      return label
-    }()
+    
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.isSecureTextEntry = true
@@ -67,7 +60,7 @@ class LoginViewController: UIViewController {
         button.configuration = conf
         return button
     }()
-
+    
     let stackViewLogin: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -76,10 +69,10 @@ class LoginViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+                    
         emailTextField.text = "may@hhh.coo"
         passwordTextField.text = "12345678"
         
@@ -87,9 +80,7 @@ class LoginViewController: UIViewController {
         imageView.clipsToBounds = true
         view.addSubview(imageView)
         view.addSubview(stackViewLogin)
-        stackViewLogin.addArrangedSubview(emailLabel)
         stackViewLogin.addArrangedSubview(emailTextField)
-        stackViewLogin.addArrangedSubview(passwordlLabel)
         stackViewLogin.addArrangedSubview(passwordTextField)
         stackViewLogin.addArrangedSubview(loginButton)
         
@@ -104,45 +95,40 @@ class LoginViewController: UIViewController {
             stackViewLogin.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
         ])
     }
+    
     func showLogin(){
-        if !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty{
-            if isValidEmail(emailTextField.text!) && isValidPassword(passwordTextField.text!){
+        guard let presenter = presenter else{ return
+        }
+        guard let emailText = emailTextField.text, !emailText.isEmpty else {
+            presentAlert(title: "Error", message: "El campo del correo no deben estar vacios")
+            return
+        }
+        guard let passwordText = passwordTextField.text, !passwordText.isEmpty else {
+            presentAlert(title: "Error", message: "El campo del contraseña no deben estar vacios")
+            return
+        }
+        
+        let isValidEmail = presenter.isValidEmail(emailText)
+        
+        let isValidPassword = presenter.isValidPassword(passwordText)
+                
+            
+            if isValidEmail && isValidPassword{
                 let viewController = HomeViewController()
                 viewController.modalPresentationStyle = .fullScreen
-                present(viewController, animated: true)
-               // navigationController?.pushViewController(viewController, animated: true)
-            }
-        }else{
-            let alert = UIAlertController(title: "Error", message: "El campo del correo y contraseña no deben estar vacios", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .default))
-            present(alert, animated: true)
-        }
-     
-    }
-    
-    func isValidEmail(_ email: String) -> Bool {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-
-            if !emailPred.evaluate(with: email){
-                let alert = UIAlertController(title: "Error", message: "Formato de correo invalido", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .default))
-                present(alert, animated: true)
-            }
-            return emailPred.evaluate(with: email)
-        }
-    
-    func isValidPassword(_ password: String) -> Bool{
-            var validpassword = false
-            if password.count >= 8{
-                validpassword = true
+               // present(viewController, animated: true)
+                navigationController?.pushViewController(viewController, animated: true)
             }else{
-                let alert = UIAlertController(title: "Error", message: "La contraseña necesita al menos 8 caracteres", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .default))
-                present(alert, animated: true)
-            }
-            return validpassword
+            presentAlert(title: "Error", message: "Los datos ingresados no son correctos")
         }
+        }
+    
+    
+    func presentAlert(title: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default))
+        present(alert, animated: true)
+    }
 
 }
 
