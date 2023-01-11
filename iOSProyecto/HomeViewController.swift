@@ -13,20 +13,36 @@ struct DevelopersModel {
     let lenguage: String
 }
 
-let listDevelopers = [
-    DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
-    DevelopersModel(image: "person.crop.circle.fill", name: "Nicolas Azocar", lenguage: "iOS"),
-]
+class HomeViewController: UIViewController, NavigationDetailInfoProtocol{
+    
+    private let dataSource: DevelopersTableViewDataSource?
+    private let delegate: DevelopersTableViewDelegate?
+    
+    init(dataSource: DevelopersTableViewDataSource, delegate: DevelopersTableViewDelegate?) {
+        self.dataSource = dataSource
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+        self.dataSource?.viewController = self
+        self.delegate?.viewController = self
+        self.delegate?.detailDelegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private let listDevelopers = [
+        DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
+        DevelopersModel(image: "person.crop.circle.fill", name: "Nicolas Azocar", lenguage: "iOS"),
+    ]
 
-let listandroid = [
-    DevelopersModel(image: "person.crop.circle.fill", name: "Maria Perez", lenguage: "Android"),
-    DevelopersModel(image: "person.crop.circle.fill", name: "Jose Martinez", lenguage: "Android"),
-]
+    private let listandroid = [
+        DevelopersModel(image: "person.crop.circle.fill", name: "Maria Perez", lenguage: "Android"),
+        DevelopersModel(image: "person.crop.circle.fill", name: "Jose Martinez", lenguage: "Android"),
+    ]
 
-let developerList = [listDevelopers, listandroid]
-
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-        
+    var developerList = [[]]
+    
     private let developerTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,15 +53,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         self.navigationItem.title = "Equipo Acelerador 3ra Generación"
-
-      
         self.navigationItem.setHidesBackButton(true, animated: false)
         
+        developerList = [listDevelopers, listandroid]
         developerTableView.backgroundColor = .white
-        developerTableView.dataSource = self
-        developerTableView.delegate = self
-        developerTableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
+        
         view.addSubview(developerTableView)
+        developerTableView.dataSource = dataSource
+        developerTableView.delegate = delegate
+        developerTableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
         
         NSLayoutConstraint.activate([
             developerTableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -55,38 +71,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ])
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        developerList.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        developerList[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
+    func goToDetail(indexPath: IndexPath) {
         let developer = developerList[indexPath.section][indexPath.row]
-        
-        cell.configure(model: developer)
-        return cell
+        let presenterViewController = DetailDeveloperViewController()
+        presenterViewController.developerDetail = developer as? DevelopersModel
+        navigationController?.pushViewController(presenterViewController, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Programadores iOS"
-        }
-        else {
-            return "Programadores Android"
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("la celda \(indexPath.row) fue seleccionada")
-        let viewController = DetailDeveloperViewController()
-        viewController.modalPresentationStyle = .fullScreen
-        let developer = developerList[indexPath.section][indexPath.row]
-        viewController.developerDetail = developer
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
 }

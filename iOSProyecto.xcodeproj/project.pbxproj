@@ -19,6 +19,8 @@
 		22AC80D429665679009160A3 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80D329665679009160A3 /* CustomCell.swift */; };
 		22AC80D629685C9D009160A3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80D529685C9D009160A3 /* LoginPresenter.swift */; };
 		22AC80D8296C587F009160A3 /* LoginPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC80D7296C587F009160A3 /* LoginPresenterTests.swift */; };
+		22AC8116296E155F009160A3 /* DevelopersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC8115296E155F009160A3 /* DevelopersTableViewDataSource.swift */; };
+		22AC8118296E4E93009160A3 /* DevelopersTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC8117296E4E93009160A3 /* DevelopersTableViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		22AC80D329665679009160A3 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		22AC80D529685C9D009160A3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		22AC80D7296C587F009160A3 /* LoginPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenterTests.swift; sourceTree = "<group>"; };
+		22AC8115296E155F009160A3 /* DevelopersTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewDataSource.swift; sourceTree = "<group>"; };
+		22AC8117296E4E93009160A3 /* DevelopersTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 				22AC80A32966240C009160A3 /* LoginViewController.swift */,
 				22AC80D529685C9D009160A3 /* LoginPresenter.swift */,
 				22AC80CF2966265E009160A3 /* HomeViewController.swift */,
+				22AC8115296E155F009160A3 /* DevelopersTableViewDataSource.swift */,
+				22AC8117296E4E93009160A3 /* DevelopersTableViewDelegate.swift */,
 				22AC80D329665679009160A3 /* CustomCell.swift */,
 				22AC80D129664DF2009160A3 /* DetailDeveloperViewController.swift */,
 				22AC80A82966240E009160A3 /* Assets.xcassets */,
@@ -265,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AC8116296E155F009160A3 /* DevelopersTableViewDataSource.swift in Sources */,
 				22AC80A42966240C009160A3 /* LoginViewController.swift in Sources */,
 				22AC80A02966240C009160A3 /* AppDelegate.swift in Sources */,
 				22AC80D629685C9D009160A3 /* LoginPresenter.swift in Sources */,
@@ -272,6 +279,7 @@
 				22AC80D229664DF2009160A3 /* DetailDeveloperViewController.swift in Sources */,
 				22AC80D429665679009160A3 /* CustomCell.swift in Sources */,
 				22AC80D02966265E009160A3 /* HomeViewController.swift in Sources */,
+				22AC8118296E4E93009160A3 /* DevelopersTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

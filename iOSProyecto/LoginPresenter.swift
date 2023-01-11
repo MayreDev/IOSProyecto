@@ -28,9 +28,8 @@ final class LoginPresenter: LoginPresenterProtocol {
         }
         return validpassword
     }
-    
-    
 }
+
 protocol LoginPresenterProtocol {
     func isValidEmail(_ email: String) -> Bool
     func isValidPassword(_ password: String) -> Bool

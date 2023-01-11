@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
         presenter.attach(view: self)
     }
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.image = UIImage(named: "what-is-a-web-developer")
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         return image
     }()
     
-    let emailTextField: UITextField = {
+    private let emailTextField: UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = 10
         textField.placeholder = "Ingrese su correo"
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    let passwordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 10
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    lazy var loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         var conf = UIButton.Configuration.bordered()
         conf.title = " Iniciar Sesión"
         conf.baseForegroundColor = .black
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    let stackViewLogin: UIStackView = {
+    private let stackViewLogin: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 20
@@ -97,32 +97,28 @@ class LoginViewController: UIViewController {
     }
     
     func showLogin(){
-        guard let presenter = presenter else{ return
-        }
+        guard let presenter = presenter else{ return}
+        
         guard let emailText = emailTextField.text, !emailText.isEmpty else {
             presentAlert(title: "Error", message: "El campo del correo no deben estar vacios")
             return
         }
+        
         guard let passwordText = passwordTextField.text, !passwordText.isEmpty else {
             presentAlert(title: "Error", message: "El campo del contraseña no deben estar vacios")
             return
         }
         
         let isValidEmail = presenter.isValidEmail(emailText)
-        
         let isValidPassword = presenter.isValidPassword(passwordText)
                 
-            
             if isValidEmail && isValidPassword{
-                let viewController = HomeViewController()
-                viewController.modalPresentationStyle = .fullScreen
-               // present(viewController, animated: true)
+                let viewController = HomeViewController(dataSource: DevelopersTableViewDataSource(), delegate: DevelopersTableViewDelegate())
                 navigationController?.pushViewController(viewController, animated: true)
             }else{
             presentAlert(title: "Error", message: "Los datos ingresados no son correctos")
         }
-        }
-    
+    }
     
     func presentAlert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

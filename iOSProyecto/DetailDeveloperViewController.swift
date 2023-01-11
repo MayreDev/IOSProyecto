@@ -20,20 +20,23 @@ class DetailDeveloperViewController: UIViewController {
 
     private let namelabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 25)
+        label.font = .systemFont(ofSize: 30)
         label.translatesAutoresizingMaskIntoConstraints  = false
+        label.numberOfLines = 0
         return label
     }()
     
     private let lenguageProgramerlabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 25)
+        label.font = .systemFont(ofSize: 30)
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints  = false
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
         view.addSubview(imagePerson)
         view.addSubview(namelabel)
