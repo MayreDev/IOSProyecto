@@ -76,7 +76,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return "Programadores iOS"
         }
         else {
-            return "Programadores Frontend"
+            return "Programadores Android"
         }
     }
     
