@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, NavigationDetailInfoProtocol{
         super.init(nibName: nil, bundle: nil)
         self.dataSource?.viewController = self
         self.delegate?.viewController = self
-        self.delegate?.detailDelegate = self
+       // self.delegate?.detailDelegate = self
     }
     
     required init?(coder: NSCoder) {
