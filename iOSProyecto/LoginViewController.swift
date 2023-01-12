@@ -16,73 +16,25 @@ class LoginViewController: UIViewController {
         presenter.attach(view: self)
     }
     
-    private let imageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.image = UIImage(named: "what-is-a-web-developer")
-        image.alpha = 1
-        image.layer.borderWidth = 10
-        image.layer.borderColor = .init(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
-        image.layer.cornerRadius = 150.0
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
-    
-    private let emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.layer.cornerRadius = 10
-        textField.placeholder = "Ingrese su correo"
-        textField.textColor = .black
-        textField.backgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
-        return textField
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.isSecureTextEntry = true
-        textField.layer.cornerRadius = 10
-        textField.placeholder = " Ingrese su contraseña"
-        textField.textColor = .black
-        textField.backgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
-        return textField
-    }()
-    
-    private lazy var loginButton: UIButton = {
-        var conf = UIButton.Configuration.bordered()
-        conf.title = " Iniciar Sesión"
-        conf.baseForegroundColor = .black
-        conf.attributedTitle?.font = .systemFont(ofSize: 18, weight: .bold)
-        conf.baseBackgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.8)
-        
-        let button = UIButton(type: .system, primaryAction: UIAction(handler: { _ in
-            self.showLogin()
-        }))
-        button.configuration = conf
-        return button
-    }()
-    
-    private let stackViewLogin: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    private let imageView = UIImageView()
+    private let emailTextField = UITextField()
+    private let passwordTextField = UITextField()
+    private var buttonLogin = UIButton()
+    private let stackViewLogin = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                    
+        
+        view.backgroundColor = .white
         emailTextField.text = "may@hhh.coo"
         passwordTextField.text = "12345678"
         
-        view.backgroundColor = .white
-        imageView.clipsToBounds = true
-        view.addSubview(imageView)
-        view.addSubview(stackViewLogin)
-        stackViewLogin.addArrangedSubview(emailTextField)
-        stackViewLogin.addArrangedSubview(passwordTextField)
-        stackViewLogin.addArrangedSubview(loginButton)
+        configureImage()
+        configureStackView()
+        configureEmailTextField()
+        configurePasswordTextField()
+        confgureButton()
+      
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 30),
@@ -96,7 +48,7 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    func showLogin(){
+    @objc func showLogin(){
         guard let presenter = presenter else{ return}
         
         guard let emailText = emailTextField.text, !emailText.isEmpty else {
@@ -125,6 +77,55 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "ok", style: .default))
         present(alert, animated: true)
     }
+    
+    func configureImage(){
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "what-is-a-web-developer")
+        imageView.alpha = 1
+        imageView.layer.borderWidth = 10
+        imageView.layer.borderColor = .init(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
+        imageView.layer.cornerRadius = 150.0
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        view.addSubview(imageView)
+    }
+    
+    func configureEmailTextField() {
+        emailTextField.layer.cornerRadius = 10
+        emailTextField.placeholder = "Ingrese su correo"
+        emailTextField.textColor = .black
+        emailTextField.backgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
+        emailTextField.leftViewMode = .always
+        emailTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+        stackViewLogin.addArrangedSubview(emailTextField)
+    }
+    
+    func configurePasswordTextField(){
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.layer.cornerRadius = 10
+        passwordTextField.placeholder = "Ingrese su contraseña"
+        passwordTextField.textColor = .black
+        passwordTextField.backgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.5)
+        passwordTextField.leftViewMode = .always
+        passwordTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 10))
+        stackViewLogin.addArrangedSubview(passwordTextField)
+    }
+    func confgureButton(){
+        buttonLogin.setTitle(" Iniciar Sesión", for: .normal)
+        buttonLogin.setTitleColor(.black, for: .normal)
+        buttonLogin.backgroundColor = UIColor(red: 148.0/255.0, green: 188.0/255.0, blue: 239.0/255.0, alpha: 0.8)
+        buttonLogin.translatesAutoresizingMaskIntoConstraints = false
+        buttonLogin.addTarget(self, action: #selector(showLogin), for: .touchDown)
+        stackViewLogin.addArrangedSubview(buttonLogin)
+        print("vhhv")
+    }
 
+    func configureStackView(){
+        stackViewLogin.axis = .vertical
+        stackViewLogin.spacing = 20
+        stackViewLogin.distribution = .fillEqually
+        stackViewLogin.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackViewLogin)
+    }
 }
 
