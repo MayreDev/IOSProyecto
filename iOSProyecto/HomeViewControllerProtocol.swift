@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol NavigationDetailInfoProtocol{
+protocol HomeViewControllerProtocol{
     func goToDetail(indexPath: IndexPath)
 }

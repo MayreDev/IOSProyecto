@@ -11,7 +11,6 @@ import XCTest
 class DevelopersTableViewDelegateTests: XCTestCase {
     
     var sut: DevelopersTableViewDelegate!
-    var navigation: HomeViewController!
     var mock: NavigationDetailMock!
     
     override func setUp() {
@@ -19,10 +18,11 @@ class DevelopersTableViewDelegateTests: XCTestCase {
         
         sut = DevelopersTableViewDelegate()
         mock = NavigationDetailMock()
+        sut.viewController = mock
         
        // navigation = HomeViewController(dataSource: DevelopersTableViewDataSource, delegate: sut)
         
-        navigation.goToDetail(indexPath: navigation.)
+       // navigation.goToDetail(indexPath: navigation)
       
     }
     
@@ -32,14 +32,16 @@ class DevelopersTableViewDelegateTests: XCTestCase {
         super.tearDown()
     }
     
+
     
     func testdidSelection() {
+        
+        XCTAssertFalse(mock.success)
         
         sut.tableView(UITableView(), didSelectRowAt: IndexPath(row: 0, section: 0) )
         
         XCTAssertTrue(mock.success)
     }
-    
     
 }
 

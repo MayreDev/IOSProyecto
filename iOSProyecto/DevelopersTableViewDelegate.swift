@@ -9,16 +9,15 @@ import UIKit
 
 class DevelopersTableViewDelegate: NSObject {
     
-    weak var viewController: HomeViewController?
+    var viewController: HomeViewControllerProtocol?
     
-   // var detailDelegate: NavigationDetailInfoProtocol?
-}
+    }
 
 extension DevelopersTableViewDelegate: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("la celda \(indexPath.row) fue seleccionada")
-        //detailDelegate?.goToDetail(indexPath: indexPath)
+        
         viewController?.goToDetail(indexPath: indexPath)
     }
 }

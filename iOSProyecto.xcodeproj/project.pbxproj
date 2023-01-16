@@ -24,7 +24,7 @@
 		22AC811A29705005009160A3 /* DevelopersTableViewDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC811929705005009160A3 /* DevelopersTableViewDataSourceTests.swift */; };
 		22AC811C29708345009160A3 /* DevelopersTableViewDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC811B29708345009160A3 /* DevelopersTableViewDelegateTests.swift */; };
 		22AC811E2970A751009160A3 /* NavigationDetailMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC811D2970A751009160A3 /* NavigationDetailMock.swift */; };
-		22AC81202970A8C7009160A3 /* NavigationDetailInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC811F2970A8C7009160A3 /* NavigationDetailInfoProtocol.swift */; };
+		22AC81202970A8C7009160A3 /* HomeViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AC811F2970A8C7009160A3 /* HomeViewControllerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,7 @@
 		22AC811929705005009160A3 /* DevelopersTableViewDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewDataSourceTests.swift; sourceTree = "<group>"; };
 		22AC811B29708345009160A3 /* DevelopersTableViewDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewDelegateTests.swift; sourceTree = "<group>"; };
 		22AC811D2970A751009160A3 /* NavigationDetailMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDetailMock.swift; sourceTree = "<group>"; };
-		22AC811F2970A8C7009160A3 /* NavigationDetailInfoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDetailInfoProtocol.swift; sourceTree = "<group>"; };
+		22AC811F2970A8C7009160A3 /* HomeViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +124,7 @@
 				22AC80CF2966265E009160A3 /* HomeViewController.swift */,
 				22AC8115296E155F009160A3 /* DevelopersTableViewDataSource.swift */,
 				22AC8117296E4E93009160A3 /* DevelopersTableViewDelegate.swift */,
-				22AC811F2970A8C7009160A3 /* NavigationDetailInfoProtocol.swift */,
+				22AC811F2970A8C7009160A3 /* HomeViewControllerProtocol.swift */,
 				22AC80D329665679009160A3 /* CustomCell.swift */,
 				22AC80D129664DF2009160A3 /* DetailDeveloperViewController.swift */,
 				22AC80A82966240E009160A3 /* Assets.xcassets */,
@@ -291,7 +291,7 @@
 				22AC80D229664DF2009160A3 /* DetailDeveloperViewController.swift in Sources */,
 				22AC80D429665679009160A3 /* CustomCell.swift in Sources */,
 				22AC80D02966265E009160A3 /* HomeViewController.swift in Sources */,
-				22AC81202970A8C7009160A3 /* NavigationDetailInfoProtocol.swift in Sources */,
+				22AC81202970A8C7009160A3 /* HomeViewControllerProtocol.swift in Sources */,
 				22AC8118296E4E93009160A3 /* DevelopersTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

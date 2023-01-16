@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class CustomCell: UITableViewCell {
     
     private let imagePerson: UIImageView = {

@@ -13,7 +13,7 @@ struct DevelopersModel {
     let lenguage: String
 }
 
-class HomeViewController: UIViewController, NavigationDetailInfoProtocol{
+class HomeViewController: UIViewController, HomeViewControllerProtocol{
     
     private let dataSource: DevelopersTableViewDataSource?
     private let delegate: DevelopersTableViewDelegate?

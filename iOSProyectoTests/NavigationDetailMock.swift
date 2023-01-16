@@ -7,11 +7,12 @@
 @testable import iOSProyecto
 import UIKit
 
-class NavigationDetailMock: NavigationDetailInfoProtocol{
+class NavigationDetailMock: HomeViewControllerProtocol{
     
     var success = false
     
     func goToDetail(indexPath: IndexPath) {
+        
         success = true
     }
     

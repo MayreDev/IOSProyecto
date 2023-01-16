@@ -117,7 +117,6 @@ class LoginViewController: UIViewController {
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
         buttonLogin.addTarget(self, action: #selector(showLogin), for: .touchDown)
         stackViewLogin.addArrangedSubview(buttonLogin)
-        print("vhhv")
     }
 
     func configureStackView(){

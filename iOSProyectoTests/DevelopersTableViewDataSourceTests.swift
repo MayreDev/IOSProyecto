@@ -25,7 +25,7 @@ class DevelopersTableViewDataSourceTests: XCTestCase{
         sut.viewController = viewController
     }
     override func tearDown() {
-        sut = nil
+       sut = nil
         super.tearDown()
     }
 
