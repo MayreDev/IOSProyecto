@@ -19,8 +19,8 @@ class DevelopersTableViewDataSourceTests: XCTestCase{
         var viewController = HomeViewController(dataSource: sut, delegate: DevelopersTableViewDelegate())
         
         viewController.developerList =
-        [[DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
-        DevelopersModel(image: "person.crop.circle.fill", name: "Nicolas Azocar", lenguage: "iOS")],[DevelopersModel(image: "person.crop.circle.fill", name: "Maria Perez", lenguage: "Android"),DevelopersModel(image: "person.crop.circle.fill", name: "Jose Martinez", lenguage: "Android")]]
+        [[DevelopersModel(image: URL(string: "https://img.europapress.es/fotoweb/fotonoticia_20160617143538_420.jpg")!, name: "Mayre Contreras", lenguage: "iOS", developerType: .ios),
+          DevelopersModel(image: URL(string: "https://img.europapress.es/fotoweb/fotonoticia_20160617143538_420.jpg")!, name: "Nicolas Azocar", lenguage: "iOS", developerType: .ios)],[DevelopersModel(image: URL(string: "https://img.europapress.es/fotoweb/fotonoticia_20160617143538_420.jpg")!, name: "Maria Perez", lenguage: "Android", developerType: .android),DevelopersModel(image: URL(string: "https://img.europapress.es/fotoweb/fotonoticia_20160617143538_420.jpg")!, name: "Jose Martinez", lenguage: "Android", developerType: .android)]]
         
         sut.viewController = viewController
     }

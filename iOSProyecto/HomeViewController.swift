@@ -6,11 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 struct DevelopersModel {
-    let image: String
+    let image: URL
     let name: String
     let lenguage: String
+    let developerType:  DeveloperType
+}
+
+enum DeveloperType{
+    case ios
+    case android
+    
 }
 
 class HomeViewController: UIViewController, HomeViewControllerProtocol{
@@ -32,13 +40,13 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol{
     }
     
     private let listDevelopers = [
-        DevelopersModel(image: "person.crop.circle.fill", name: "Mayre Contreras", lenguage: "iOS"),
-        DevelopersModel(image: "person.crop.circle.fill", name: "Nicolas Azocar", lenguage: "iOS"),
+        DevelopersModel(image: URL(string: "https://e7.pngegg.com/pngimages/976/946/png-clipart-woman-programmer-girl-love-woman.png")!, name: "Mayre Contreras", lenguage: "iOS", developerType: .ios),
+        DevelopersModel(image: URL(string: "https://img.freepik.com/vector-gratis/ilustracion-concepto-programacion_114360-1351.jpg?w=2000")!, name: "Nicolas Azocar", lenguage: "iOS", developerType: .ios),
     ]
 
     private let listandroid = [
-        DevelopersModel(image: "person.crop.circle.fill", name: "Maria Perez", lenguage: "Android"),
-        DevelopersModel(image: "person.crop.circle.fill", name: "Jose Martinez", lenguage: "Android"),
+        DevelopersModel(image: URL(string: "https://thumbs.dreamstime.com/z/promotor-de-web-programador-flat-vector-illustration-codificador-joven-freelancer-en-personaje-dibujos-animados-los-auriculares-146832093.jpg")!, name: "Jose Perez", lenguage: "Android", developerType: .android),
+        DevelopersModel(image: URL(string: "https://w7.pngwing.com/pngs/651/205/png-transparent-user-the-cartoon-guide-to-computer-science-computer-computer-public-relations-business.png")!, name: "Maria Martinez", lenguage: "Android", developerType: .android),
     ]
 
     var developerList = [[]]

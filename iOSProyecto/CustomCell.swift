@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CustomCell: UITableViewCell {
     
@@ -58,7 +59,7 @@ class CustomCell: UITableViewCell {
     }
     
     func configure(model: DevelopersModel){
-        imagePerson.image = UIImage(systemName: model.image)
+        imagePerson.image = UIImage(systemName: "person.crop.circle.fill")
         namelabel.text = model.name
         lenguageProgramerlabel.text = model.lenguage
     }
